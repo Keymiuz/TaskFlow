@@ -15,16 +15,22 @@
 	<description>TaskFlow API</description>
 	<url/>
 	<licenses>
-		<license/>
+		<license>
+			<name>MIT License</name>
+			<url>https://opensource.org/license/mit/</url>
+		</license>
 	</licenses>
 	<developers>
-		<developer/>
+		<developer>
+			<id>Keymiuz</id>
+			<name>Keymiuz</name>
+		</developer>
 	</developers>
 	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
+		<connection>scm:git:git://github.com/Keymiuz/TaskFlow.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/Keymiuz/TaskFlow.git</developerConnection>
+		<tag>HEAD</tag>
+		<url>https://github.com/Keymiuz/TaskFlow</url>
 	</scm>
 	<properties>
 		<java.version>21</java.version>

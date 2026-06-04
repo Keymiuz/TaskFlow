@@ -1,5 +1,7 @@
 # Root workspace
 .env
+.env.*
+.vercel/
 taskflow-api/target/
 taskflow-api/.idea/
 taskflow-api/.classpath
@@ -9,6 +11,7 @@ taskflow-web/node_modules/
 taskflow-web/dist/
 taskflow-web/.angular/
 taskflow-web/.cache/
+taskflow-web/.vercel/
 uploads/
 taskflow-api/uploads/
 taskflow-api/*.log
