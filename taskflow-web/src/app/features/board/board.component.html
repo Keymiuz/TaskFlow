@@ -1,0 +1,77 @@
+<section class="board-shell">
+  <header class="section-head">
+    <div>
+      <p class="eyebrow">Board</p>
+      <h1>{{ board().projectName }}</h1>
+      <p class="section-copy">
+        Drag cards between columns and keep the delivery flow visible for everyone.
+      </p>
+    </div>
+
+    <mat-chip-set aria-label="Board summary">
+      <mat-chip>{{ totalTasks() }} tasks</mat-chip>
+      <mat-chip>{{ board().columns.length }} columns</mat-chip>
+    </mat-chip-set>
+  </header>
+
+  <div class="board-grid" cdkDropListGroup>
+    @for (column of board().columns; track column.id) {
+      <mat-card class="column-card" [attr.data-column]="column.id">
+        <header class="column-head">
+          <div>
+            <span class="swatch" [style.background]="column.color"></span>
+            <h2>{{ column.title }}</h2>
+          </div>
+          <span class="count">{{ column.tasks.length }}</span>
+        </header>
+
+        <div
+          class="task-list"
+          cdkDropList
+          [id]="column.id"
+          [cdkDropListData]="column.tasks"
+          (cdkDropListDropped)="drop($event, column.id)"
+        >
+          @for (task of column.tasks; track task.id) {
+            <mat-card class="task-card" cdkDrag [cdkDragData]="task">
+              <div class="task-head">
+                <button class="drag-handle" cdkDragHandle type="button" aria-label="Drag task">
+                  <mat-icon>drag_indicator</mat-icon>
+                </button>
+                <span class="priority" [attr.data-priority]="task.priority">{{ task.priority }}</span>
+              </div>
+
+              <h3>{{ task.title }}</h3>
+              <p>{{ task.description }}</p>
+
+              <div class="task-meta">
+                <span>{{ task.assignee }}</span>
+                <span>{{ task.dueDate }}</span>
+              </div>
+
+              <mat-chip-set class="label-chips" aria-label="Task labels">
+                @for (label of task.labels; track label) {
+                  <mat-chip>{{ label }}</mat-chip>
+                }
+              </mat-chip-set>
+            </mat-card>
+          }
+
+          @if (column.tasks.length === 0) {
+            <div class="empty-state">
+              <mat-icon>inbox</mat-icon>
+              <span>Drop a task here</span>
+            </div>
+          }
+        </div>
+      </mat-card>
+    }
+  </div>
+
+  <div class="board-footer">
+    <a mat-stroked-button color="primary" routerLink="/projects">
+      <mat-icon>arrow_back</mat-icon>
+      Back to projects
+    </a>
+  </div>
+</section>

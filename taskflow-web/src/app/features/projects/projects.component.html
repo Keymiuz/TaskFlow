@@ -1,0 +1,74 @@
+<section class="projects-shell">
+  <header class="section-head">
+    <div>
+      <p class="eyebrow">Portfolio</p>
+      <h1>Projects</h1>
+      <p class="section-copy">
+        Keep the whole product portfolio visible, ordered, and easy to act on.
+      </p>
+    </div>
+
+    <mat-button-toggle-group
+      class="filter-toggle"
+      [value]="filter()"
+      (change)="setFilter($event.value)"
+      aria-label="Project filter"
+    >
+      <mat-button-toggle value="all">All</mat-button-toggle>
+      <mat-button-toggle value="On track">On track</mat-button-toggle>
+      <mat-button-toggle value="At risk">At risk</mat-button-toggle>
+      <mat-button-toggle value="Stable">Stable</mat-button-toggle>
+    </mat-button-toggle-group>
+  </header>
+
+  <div class="project-grid">
+    @for (project of filteredProjects(); track project.id) {
+      <mat-card class="project-card">
+        <div class="project-top">
+          <div class="project-dot" [style.background]="project.color"></div>
+          <div>
+            <h2>{{ project.name }}</h2>
+            <p>{{ project.description }}</p>
+          </div>
+          <mat-chip-set class="status-chip" aria-label="Project status">
+            <mat-chip>{{ project.status }}</mat-chip>
+          </mat-chip-set>
+        </div>
+
+        <mat-progress-bar mode="determinate" [value]="project.progress"></mat-progress-bar>
+
+        <div class="project-meta">
+          <div>
+            <span>Owner</span>
+            <strong>{{ project.owner }}</strong>
+          </div>
+          <div>
+            <span>Due</span>
+            <strong>{{ project.dueDate }}</strong>
+          </div>
+          <div>
+            <span>Members</span>
+            <strong>{{ project.members.length }}</strong>
+          </div>
+        </div>
+
+        <mat-chip-set class="member-chips" aria-label="Project members">
+          @for (member of project.members; track member) {
+            <mat-chip>{{ member }}</mat-chip>
+          }
+        </mat-chip-set>
+
+        <div class="actions">
+          <a mat-flat-button color="primary" [routerLink]="['/projects', project.id, 'board']">
+            <mat-icon>view_kanban</mat-icon>
+            Open board
+          </a>
+          <a mat-stroked-button color="primary" [routerLink]="['/projects', project.id]">
+            <mat-icon>open_in_new</mat-icon>
+            Details
+          </a>
+        </div>
+      </mat-card>
+    }
+  </div>
+</section>

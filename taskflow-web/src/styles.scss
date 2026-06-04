@@ -1,0 +1,107 @@
+@use '@angular/material' as mat;
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons+Outlined');
+
+@include mat.core();
+
+$taskflow-primary: mat.m2-define-palette(mat.$m2-teal-palette, 700, 300, 900);
+$taskflow-accent: mat.m2-define-palette(mat.$m2-orange-palette, 600, 300, 800);
+$taskflow-warn: mat.m2-define-palette(mat.$m2-red-palette, 600);
+
+$taskflow-theme: mat.m2-define-light-theme((
+  color: (
+    primary: $taskflow-primary,
+    accent: $taskflow-accent,
+    warn: $taskflow-warn,
+  ),
+  typography: mat.m2-define-typography-config(
+    $font-family: 'Manrope, "Segoe UI", sans-serif',
+  ),
+  density: 0,
+));
+
+@include mat.all-component-themes($taskflow-theme);
+
+:root {
+  color-scheme: light;
+  --tf-bg: #f6f2eb;
+  --tf-surface: #fffdf8;
+  --tf-surface-strong: #ffffff;
+  --tf-text: #13212f;
+  --tf-muted: #5c6876;
+  --tf-border: rgba(19, 33, 47, 0.1);
+  --tf-shadow: 0 18px 50px rgba(17, 24, 39, 0.08);
+  --tf-primary: #0f766e;
+  --tf-primary-soft: #d8f1ed;
+  --tf-accent: #c2410c;
+  --tf-accent-soft: #fde9dc;
+  --tf-violet: #6d28d9;
+  --tf-violet-soft: #ece5ff;
+  --tf-rose: #e11d48;
+  --tf-rose-soft: #ffe4ea;
+  --tf-radius-xl: 28px;
+  --tf-radius-lg: 22px;
+  --tf-radius-md: 16px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: 'Manrope', 'Segoe UI', sans-serif;
+  color: var(--tf-text);
+  background:
+    radial-gradient(circle at top left, rgba(15, 118, 110, 0.12), transparent 36%),
+    radial-gradient(circle at 90% 10%, rgba(194, 65, 12, 0.08), transparent 30%),
+    linear-gradient(180deg, #fbf8f3 0%, #f6f2eb 45%, #f4efe7 100%);
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(19, 33, 47, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(19, 33, 47, 0.02) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), transparent 70%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-family: 'Space Grotesk', 'Manrope', sans-serif;
+  letter-spacing: -0.03em;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}

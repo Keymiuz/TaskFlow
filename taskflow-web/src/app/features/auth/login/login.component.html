@@ -1,0 +1,40 @@
+<section class="auth-shell">
+  <mat-card class="auth-card">
+    <div class="copy">
+      <p class="eyebrow">Welcome back</p>
+      <h1>Sign in to TaskFlow</h1>
+      <p>
+        Use the seeded dev admin account to explore the system before wiring your own team.
+      </p>
+    </div>
+
+    @if (error()) {
+      <div class="error-banner">{{ error() }}</div>
+    }
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="auth-form">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" autocomplete="email" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" autocomplete="current-password" />
+      </mat-form-field>
+
+      <button mat-flat-button color="primary" type="submit" [disabled]="pending()">
+        @if (pending()) {
+          Signing in...
+        } @else {
+          Sign in
+        }
+      </button>
+    </form>
+
+    <div class="footer-copy">
+      <span>New here?</span>
+      <a routerLink="/auth/register">Create your account</a>
+    </div>
+  </mat-card>
+</section>

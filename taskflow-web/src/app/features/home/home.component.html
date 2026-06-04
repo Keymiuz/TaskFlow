@@ -1,0 +1,93 @@
+<section class="home-grid">
+  <mat-card class="hero-card">
+    <div class="hero-copy">
+      <h1>Keep every board moving with one shared source of truth.</h1>
+      <p>
+        TaskFlow gives teams a real-time Kanban board, role-aware access, and audit-friendly history
+        without turning the UI into a maze.
+      </p>
+      <div class="actions">
+        <a mat-flat-button color="primary" routerLink="/dashboard">
+          <mat-icon>insights</mat-icon>
+          Open dashboard
+        </a>
+        <a mat-stroked-button color="primary" routerLink="/projects">
+          <mat-icon>folder</mat-icon>
+          Browse projects
+        </a>
+      </div>
+      <mat-chip-set class="hero-chips" aria-label="Highlights">
+        <mat-chip>JWT auth</mat-chip>
+        <mat-chip>Socket sync</mat-chip>
+        <mat-chip>Docker ready</mat-chip>
+      </mat-chip-set>
+    </div>
+
+    <div class="metrics">
+      @for (metric of metrics; track metric.label) {
+        <div class="metric-card" [attr.data-tone]="metric.tone">
+          <span class="metric-label">{{ metric.label }}</span>
+          <strong>{{ metric.value }}</strong>
+          <span class="metric-delta">{{ metric.delta }}</span>
+          <span class="metric-help">{{ metric.helperText }}</span>
+        </div>
+      }
+    </div>
+  </mat-card>
+
+  <div class="side-stack">
+    <mat-card class="snapshot-card">
+      <div class="card-head">
+        <div>
+          <span class="card-kicker">Live board snapshot</span>
+          <h2>{{ board.projectName }}</h2>
+        </div>
+        <mat-chip-set>
+          <mat-chip>4 columns</mat-chip>
+        </mat-chip-set>
+      </div>
+
+      <div class="columns">
+        @for (column of board.columns; track column.id) {
+          <section class="column-card">
+            <header>
+              <span class="swatch" [style.background]="column.color"></span>
+              <strong>{{ column.title }}</strong>
+              <span>{{ column.tasks.length }}</span>
+            </header>
+            @for (task of column.tasks.slice(0, 2); track task.id) {
+              <article class="task-card">
+                <span class="priority" [attr.data-priority]="task.priority">{{ task.priority }}</span>
+                <h3>{{ task.title }}</h3>
+                <p>{{ task.description }}</p>
+              </article>
+            }
+          </section>
+        }
+      </div>
+    </mat-card>
+
+    <mat-card class="activity-card">
+      <div class="card-head">
+        <div>
+          <span class="card-kicker">Recent activity</span>
+          <h2>Momentum is visible for the whole team</h2>
+        </div>
+      </div>
+
+      <div class="activity-list">
+        @for (entry of activity; track entry.subject) {
+          <article class="activity-item" [attr.data-tone]="entry.tone">
+            <span class="dot"></span>
+            <div>
+              <strong>{{ entry.actor }}</strong>
+              <span>{{ entry.action }}</span>
+              <p>{{ entry.subject }}</p>
+            </div>
+            <time>{{ entry.time }}</time>
+          </article>
+        }
+      </div>
+    </mat-card>
+  </div>
+</section>

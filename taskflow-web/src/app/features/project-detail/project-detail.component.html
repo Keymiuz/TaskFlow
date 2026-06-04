@@ -1,0 +1,77 @@
+<section class="detail-shell">
+  <mat-card class="hero-card">
+    <div class="hero-top">
+      <div>
+        <p class="eyebrow">Project detail</p>
+        <h1>{{ project().name }}</h1>
+        <p class="section-copy">{{ project().description }}</p>
+      </div>
+      <mat-chip-set aria-label="Project status">
+        <mat-chip>{{ project().status }}</mat-chip>
+      </mat-chip-set>
+    </div>
+
+    <div class="hero-meta">
+      <div>
+        <span>Owner</span>
+        <strong>{{ project().owner }}</strong>
+      </div>
+      <div>
+        <span>Due</span>
+        <strong>{{ project().dueDate }}</strong>
+      </div>
+      <div>
+        <span>Progress</span>
+        <strong>{{ project().progress }}%</strong>
+      </div>
+    </div>
+
+    <mat-progress-bar mode="determinate" [value]="project().progress"></mat-progress-bar>
+
+    <div class="actions">
+      <a mat-flat-button color="primary" [routerLink]="['/projects', project().id, 'board']">
+        <mat-icon>view_kanban</mat-icon>
+        Open board
+      </a>
+      <a mat-stroked-button color="primary" routerLink="/projects">
+        <mat-icon>arrow_back</mat-icon>
+        Back to projects
+      </a>
+    </div>
+  </mat-card>
+
+  <div class="content-grid">
+    <mat-card class="content-card">
+      <div class="card-head">
+        <div>
+          <span class="card-kicker">Team</span>
+          <h2>Members and ownership</h2>
+        </div>
+      </div>
+
+      <mat-chip-set class="member-chips" aria-label="Members">
+        @for (member of project().members; track member) {
+          <mat-chip>{{ member }}</mat-chip>
+        }
+      </mat-chip-set>
+    </mat-card>
+
+    <mat-card class="content-card">
+      <div class="card-head">
+        <div>
+          <span class="card-kicker">Milestones</span>
+          <h2>Delivery checkpoints</h2>
+        </div>
+      </div>
+
+      <div class="milestone-list">
+        @for (item of milestones; track item) {
+          <article class="milestone-item">
+            <mat-icon>check_circle</mat-icon>
+            <span>{{ item }}</span>
+          </article>
+        }
+      </div>
+    </mat-card>
+  </div>
+</section>

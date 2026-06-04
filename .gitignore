@@ -1,0 +1,22 @@
+# Root workspace
+.env
+taskflow-api/target/
+taskflow-api/.idea/
+taskflow-api/.classpath
+taskflow-api/.project
+taskflow-api/.settings/
+taskflow-web/node_modules/
+taskflow-web/dist/
+taskflow-web/.angular/
+taskflow-web/.cache/
+uploads/
+taskflow-api/uploads/
+taskflow-api/*.log
+taskflow-web/*.log
+taskflow-api.zip
+
+# IDE and OS
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini

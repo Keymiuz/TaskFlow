@@ -1,0 +1,66 @@
+.auth-shell {
+  min-height: calc(100dvh - 140px);
+  display: grid;
+  place-items: center;
+  padding: 2rem 0;
+}
+
+.auth-card {
+  width: min(100%, 520px);
+  border-radius: var(--tf-radius-xl);
+  border: 1px solid var(--tf-border);
+  background: rgba(255, 253, 248, 0.9);
+  box-shadow: var(--tf-shadow);
+  padding: 1.8rem;
+}
+
+.copy h1 {
+  font-size: clamp(2rem, 3vw, 2.7rem);
+  line-height: 1;
+}
+
+.copy p {
+  color: var(--tf-muted);
+  line-height: 1.6;
+}
+
+.eyebrow {
+  margin: 0 0 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--tf-muted);
+  font-size: 0.76rem;
+}
+
+.error-banner {
+  margin-top: 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: 16px;
+  background: var(--tf-rose-soft);
+  color: var(--tf-rose);
+  font-weight: 700;
+}
+
+.auth-form {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.auth-form button {
+  border-radius: 999px;
+  min-height: 3rem;
+}
+
+.footer-copy {
+  display: flex;
+  gap: 0.45rem;
+  justify-content: center;
+  margin-top: 1.25rem;
+  color: var(--tf-muted);
+}
+
+.footer-copy a {
+  color: var(--tf-primary);
+  font-weight: 700;
+}

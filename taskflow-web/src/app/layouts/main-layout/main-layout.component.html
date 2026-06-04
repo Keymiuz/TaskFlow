@@ -1,0 +1,37 @@
+<div class="layout-shell">
+  <mat-toolbar class="topbar" color="primary">
+    <a class="brand" routerLink="/">
+      <span class="brand-mark">TF</span>
+      <span class="brand-copy">
+        <span class="brand-name">TaskFlow</span>
+        <span class="brand-subtitle">Real-time Kanban</span>
+      </span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Overview</a>
+      <a mat-button routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+      <a mat-button routerLink="/projects" routerLinkActive="active">Projects</a>
+      <a mat-button [routerLink]="['/projects', 'atlas', 'board']" routerLinkActive="active">Board</a>
+    </nav>
+
+    <span class="spacer"></span>
+
+    @if (currentUser(); as user) {
+      <mat-chip-set class="identity-chip" aria-label="Logged in user">
+        <mat-chip>{{ user.name }} · {{ user.role }}</mat-chip>
+      </mat-chip-set>
+      <button mat-stroked-button color="primary" type="button" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Log out
+      </button>
+    } @else {
+      <a mat-button routerLink="/auth/login">Log in</a>
+      <a mat-flat-button color="primary" routerLink="/auth/register">Create account</a>
+    }
+  </mat-toolbar>
+
+  <main class="page-shell">
+    <router-outlet />
+  </main>
+</div>
